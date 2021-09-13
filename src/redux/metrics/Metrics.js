@@ -11,13 +11,13 @@ const MetricsReducer = (state = [], action) => {
     case FETCH_METRICS:
       return action.payload.map((metrics) => {
         const {
-          id,
-          country_name: countryName,
+          state,
           image,
           description,
+          ipoDate,
         } = metrics;
         return {
-          id, countryName, image, description,
+          state, image, description, ipoDate,
         };
       });
     default:
