@@ -1,15 +1,11 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import {
-//   Button,
-//   Badge,
-// } from 'react-bootstrap';
 import { MetricsData } from '../redux/metrics/Metrics';
+import './Metrics.css';
 
 const Metrics = () => {
   const metrics = useSelector((state) => state.MetricsReducer);
 
-  console.log(metrics);
   const dispatch = useDispatch();
   useEffect(() => {
     if (!metrics.length) {
@@ -17,28 +13,24 @@ const Metrics = () => {
     }
   }, []);
 
-  // const handleTicketBooking = (id) => dispatch(reserveRocketTicket(id));
-  // const handleTicketCancellation = (id) => dispatch(cancelRocketTicket(id));
-
   return (
-    <div className="">
-      {metrics.map(({
-        ipoDate, state, description, image,
-      }) => (
-        <div key={ipoDate} className="img-desc">
-          <div className="img-div">
-            <img src={image} alt="img" />
-          </div>
-          <div style={{ padding: '0 1rem' }}>
-            <div>
-              <h2>{state}</h2>
-              <h4>
-                {description}
-              </h4>
+    <div className="metrics">
+      <h4>Stats by country</h4>
+      <div className="country-data">
+        {metrics.map((data) => (
+          <div key={data.country} className="even">
+            <div className="country">
+              <div className="country-item">
+                <h4>{data.country}</h4>
+                <p className="para">
+                  <span>Cases:</span>
+                  {data.cases.active}
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

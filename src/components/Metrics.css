@@ -1,0 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.metrics {
+  background-color: #f87171;
+}
+
+.para {
+  float: right;
+  clear: both;
+}
+
+.country {
+  position: relative;
+  height: 100px;
+}
+
+.country-item {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.country-data {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.country:nth-child(even) {
+  background-color: #fff;
+}
