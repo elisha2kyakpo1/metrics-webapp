@@ -1,13 +1,15 @@
 const images = [{
-  doctor: 'assets/images/doctor.jpg',
-  corona: 'assets/images/corona-home.jpg',
-  continent: 'assets/images/country.jpg',
-  faceMask: 'assets/images/face-mask.jpg',
-  faceMask2: 'assets/images/face-mask2.jpg',
-  facePost: 'assets/images/face-post.jpg',
-  gloves: 'assets/images/gloves.jpg',
-  iject: 'assets/images/iject.jpg',
+  doctor: 'images/doctor.jpg',
+  corona: 'images/corona-home.jpg',
+  continent: 'images/country.jpg',
+  faceMask: 'images/face-mask.jpg',
+  faceMask2: 'images/face-mask2.jpg',
+  facePost: 'images/face-post.jpg',
+  gloves: 'images/gloves.jpg',
+  iject: 'images/iject.jpg',
   vaccineBottle: 'assets/images/vaccine-bottle.jpg',
 }];
 
-export default images;
+const imgData = images[Math.floor(Math.random() * images.length)];
+
+export default imgData;
