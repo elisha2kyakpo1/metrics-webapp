@@ -3,13 +3,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ArrowBackIos, Settings, Mic } from '@material-ui/icons';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { MetricsData } from '../redux/metrics/Metrics';
-// import imgData from './images';
 import './Metrics.css';
 import homeImg from '../assets/images/europe.png';
 
 const Metrics = () => {
   const metrics = useSelector((state) => state.MetricsReducer);
   const filtered = metrics.slice(100, 120);
+  const newArray = filtered;
+  const final = newArray.map((arr) => arr.continent);
+  const totalCases = newArray.map((arr) => arr.cases.total);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -19,6 +21,13 @@ const Metrics = () => {
   }, []);
 
   const styles = {
+    backgroundImage: `url(${homeImg})`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+  };
+
+  const corona = {
     backgroundImage: `url(${homeImg})`,
     backgroundPosition: 'center',
     backgroundSize: 'cover',
@@ -35,7 +44,7 @@ const Metrics = () => {
         <div>
           <h4>total cases</h4>
         </div>
-        <div>
+        <div className="settings">
           <Settings />
           <Mic />
         </div>
@@ -43,12 +52,15 @@ const Metrics = () => {
       <div className="continent-cont">
         <div className="home-img" style={styles}> </div>
         <div className="continent">
-          <h2>
-            {filtered.map((cont) => (
-              <span key={cont.population}>{!cont.continent === 'Africa'}</span>
-            ))}
-          </h2>
-          <h4><span>Cases</span></h4>
+          <div>
+            <h2>
+              {final[1]}
+            </h2>
+            <h4>
+              {totalCases[1]}
+              <span> Cases</span>
+            </h4>
+          </div>
         </div>
       </div>
       <div className="country-cont">
@@ -56,12 +68,13 @@ const Metrics = () => {
         <div className="country-data">
           {filtered.map((data) => (
             <div key={data.country} className="even">
-              <div className="country">
+              <div style={corona} className="country">
                 <div className="arrow-forward-btn">
                   <ArrowForwardIcon />
                 </div>
                 <div className="country-item">
-                  <h4>{data.continent}</h4>
+                  <div className="corona"> </div>
+                  <h4>{data.country}</h4>
                   <p className="para">
                     {data.cases.active}
                   </p>
