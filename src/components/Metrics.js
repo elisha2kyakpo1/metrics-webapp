@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import { ArrowBackIos, Settings, Mic } from '@material-ui/icons';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { MetricsData } from '../redux/metrics/Metrics';
 // import imgData from './images';
 import './Metrics.css';
@@ -26,29 +27,49 @@ const Metrics = () => {
 
   return (
     <div className="metrics">
-      <div>
-        <ArrowBackIosIcon />
+      <div className="header">
+        <div className="arrow">
+          <ArrowBackIos />
+          <span>2021</span>
+        </div>
+        <div>
+          <h4>total cases</h4>
+        </div>
+        <div>
+          <Settings />
+          <Mic />
+        </div>
       </div>
       <div className="continent-cont">
         <div className="home-img" style={styles}> </div>
         <div className="continent">
+          <h2>
+            {filtered.map((cont) => (
+              <span key={cont.population}>{!cont.continent === 'Africa'}</span>
+            ))}
+          </h2>
           <h4><span>Cases</span></h4>
         </div>
       </div>
-      <h4>Stats by country</h4>
-      <div className="country-data">
-        {filtered.map((data) => (
-          <div key={data.country} className="even">
-            <div className="country">
-              <div className="country-item">
-                <h4>{data.country}</h4>
-                <p className="para">
-                  {data.cases.active}
-                </p>
+      <div className="country-cont">
+        <h4 className="stats">Stats by country</h4>
+        <div className="country-data">
+          {filtered.map((data) => (
+            <div key={data.country} className="even">
+              <div className="country">
+                <div className="arrow-forward-btn">
+                  <ArrowForwardIcon />
+                </div>
+                <div className="country-item">
+                  <h4>{data.continent}</h4>
+                  <p className="para">
+                    {data.cases.active}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

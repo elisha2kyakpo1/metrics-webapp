@@ -4,10 +4,6 @@
   box-sizing: border-box;
 }
 
-.metrics {
-  background-color: #f87171;
-}
-
 .para {
   float: right;
   clear: both;
@@ -18,8 +14,22 @@
   padding-bottom: 10px;
 }
 
-.continent {
+.arrow-forward-btn,
+.continent,
+.header,
+.arrow {
   display: flex;
+}
+
+.arrow-forward-btn {
+  padding-top: 5px;
+}
+
+.arrow-forward-btn .MuiSvgIcon-root {
+  margin-left: auto;
+}
+
+.continent {
   justify-content: center;
   align-items: center;
 }
@@ -40,8 +50,11 @@
   height: 200px;
 }
 
-.country-data {
-  background-color: rgba(0, 0, 0, 0.1);
+.country-data,
+.country-cont,
+.stats,
+.header {
+  background-color: rgba(0, 0, 0, 0.08);
 }
 
 .country-data,
@@ -52,7 +65,29 @@
   font-family: GillSansMedium, sans-serif;
 }
 
+.header {
+  height: 40px;
+}
+
+.stats {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-left: 8px;
+  font-family: GillSansMedium, sans-serif;
+}
+
+.header,
+.arrow {
+  color: #fff;
+  font-weight: 500;
+  font-family: GillSansMedium, sans-serif;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .even:nth-child(4n + 2),
-.even:nth-child(4n + 3) {
+.even:nth-child(4n + 3),
+.header {
   background-color: rgba(0, 0, 0, 0.08);
 }
