@@ -14,14 +14,8 @@ const MetricsReducer = (state = [], action) => {
   }
 };
 
-const MetricsData = () => (dispatch) => {
-  fetch('https://covid-193.p.rapidapi.com/statistics', {
-    method: 'GET',
-    headers: {
-      'x-rapidapi-host': 'covid-193.p.rapidapi.com',
-      'x-rapidapi-key': 'f40c691532mshbbfb84c09586d2bp1aa6cajsn9c2db14b73a5',
-    },
-  })
+const MetricsData = (continent, country) => (dispatch) => {
+  fetch(`https://covid-api.mmediagroup.fr/v1/cases?continent=${continent}&country=${country}`)
     .then((response) => response.json())
     .then((json) => dispatch(LoadMetrics(json)));
 };

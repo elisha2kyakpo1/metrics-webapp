@@ -1,12 +1,66 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
+import { ArrowBackIos, Settings, Mic } from '@material-ui/icons';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+
+import './Details.css';
 
 const ItemDetails = () => {
-  const country = useSelector((state) => state.MetricsReducer.filter((item) => item.selected));
-  console.log(country);
+  const { name } = useParams();
+  const dispatch = useDispatch();
+  const { country, loading } = useSelector((state) => ({
+    loading: state.loadingBar.default,
+    country: state.countries.selected,
+  }));
+
+  useEffect(() => {
+    dispatch((name));
+  }, []);
+
+  if (loading || !country) {
+    return null;
+  }
+
+  const { All } = country;
+  const list = Object.entries(country).slice(1);
+
   return (
-    <div>
-      <h2>hello</h2>
-    </div>
+    <section>
+      <header className="App-header">
+        <Link to="/">
+          <ArrowBackIos />
+        </Link>
+        <h5 className="App-header-title">town/city views</h5>
+        <Mic />
+        <div className="pl-5">
+          <Settings />
+        </div>
+      </header>
+      <div className="Details-banner">
+        <div className="Details-banner-left"> </div>
+        <div className="Details-banner-right">
+          <h1 className="App-title">{All.country}</h1>
+        </div>
+      </div>
+      <section className="Home-stats">
+        <h5 className="App-section-title">CITY/TOWN BREAKDOWN - 2021</h5>
+        <ul>
+          {list.map(([name]) => (
+            <li key={name} className="Details-item">
+              <h6 className="Detail-title">{name}</h6>
+              <div className="Details-right">
+                <p className="App-subtitle">
+                  {' '}
+                  cases
+                </p>
+                <ArrowForwardIcon />
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </section>
   );
 };
 
