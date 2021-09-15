@@ -5,7 +5,7 @@ A Metrics-webapp is a mobile web application to check a list of corona virus sta
 ![Metrics](/src/assets/metrics.png)
 
 ## Live Link
-[Covid-19 tracker]()
+[Covid-19 tracker](https://covidmetrics.netlify.app/)
 
 ## Getting Started
 
