@@ -40,8 +40,8 @@ const MetricsDataCountry = async (country) => {
   return data;
 };
 
-const fetchCountry = (name) => async (dispatch) => {
-  const data = await MetricsDataCountry(name);
+const fetchCountry = (country) => async (dispatch) => {
+  const data = await MetricsDataCountry(country);
   dispatch(loadMetricsCountry(data));
 };
 

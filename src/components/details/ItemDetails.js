@@ -4,22 +4,16 @@ import { Link, useParams } from 'react-router-dom';
 import { ArrowBackIos, Settings, Mic } from '@material-ui/icons';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import './ItemDetails.css';
+import { fetchCountry } from '../../redux/metrics/Metrics';
 
 const ItemDetails = () => {
   const { name } = useParams();
   const dispatch = useDispatch();
-  const { country, loading } = useSelector((state) => ({
-    loading: state.loadingBar.default,
-    country: state.countries.selected,
-  }));
+  const { country } = useSelector((state) => state.MetricsReducer.selected);
 
   useEffect(() => {
-    dispatch((name));
+    dispatch(fetchCountry(name));
   }, []);
-
-  if (loading || !country) {
-    return null;
-  }
 
   const { All } = country;
   const list = Object.entries(country).slice(1);

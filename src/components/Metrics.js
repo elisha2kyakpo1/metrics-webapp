@@ -8,37 +8,48 @@ import './Metrics.css';
 import homeImg from '../assets/images/europe.png';
 import { fetchCountries } from '../redux/metrics/Metrics';
 
+const corona = {
+  backgroundImage: `url(${homeImg})`,
+  backgroundPosition: 'center',
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+};
+
 const Item = ({ confirmed, name }) => (
-  <div className="Home-item-content">
-    <div className="Home-item-icon">
+  <div className="country-ite">
+    <div className="arrow-forward-btn">
       <ArrowForwardIcon />
     </div>
-    <div className="Home-item-top">
-      <img src={homeImg} alt="" className="Home-item-image" />
-    </div>
-    <div className="Home-item-bottom">
-      <h4 className="App-title">{name}</h4>
-      <p className="App-subtitle">{confirmed}</p>
+    <div className="corona"> </div>
+    <div className="country-title">
+      <div>
+        <h4 className="">{name}</h4>
+        <p className="para">{confirmed}</p>
+      </div>
     </div>
   </div>
 );
 
 const Grid = ({ items = [] }) => (
-  <ul className="country-data">
-    {items.map(({ name, confirmed }) => (
-      <li key={name} className="country">
-        <Link to={`/country/${name}`}>
-          <Item confirmed={confirmed} name={name} />
-        </Link>
-      </li>
-    ))}
-  </ul>
+  <div className="country-cont">
+    <h5 className="stats">STATS BY COUNTRY</h5>
+    <div className="country-data">
+      {items.map(({ name, confirmed }) => (
+        <div key={name} className="even">
+          <div style={corona} className="country">
+            <Link to={`/country/${name}`}>
+              <Item confirmed={confirmed} name={name} />
+            </Link>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
 );
 
 const Metrics = () => {
   const { items, totalConfirmed } = useSelector((state) => state.MetricsReducer);
 
-  console.log(items);
   const dispatch = useDispatch();
   useEffect(() => {
     if (!items.length) {
@@ -52,13 +63,6 @@ const Metrics = () => {
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
   };
-
-  // const corona = {
-  //   backgroundImage: `url(${homeImg})`,
-  //   backgroundPosition: 'center',
-  //   backgroundSize: 'cover',
-  //   backgroundRepeat: 'no-repeat',
-  // };
 
   return (
     <div className="metrics">
@@ -84,14 +88,7 @@ const Metrics = () => {
           </div>
         </div>
       </div>
-      <div className="country-cont">
-        <div className="country-data">
-          <section className="country-cont">
-            <h5 className="stats">STATS BY COUNTRY</h5>
-            <Grid items={items} />
-          </section>
-        </div>
-      </div>
+      <Grid items={items} />
     </div>
   );
 };
