@@ -84,7 +84,11 @@ const Metrics = () => {
         <div className="continent">
           <div>
             <h2>Africa</h2>
-            <span>{totalConfirmed}</span>
+            <span>
+              {totalConfirmed}
+              {' '}
+              Cases
+            </span>
           </div>
         </div>
       </div>
