@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowBackIos, Settings, Mic } from '@material-ui/icons';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-
-import './Details.css';
+import './ItemDetails.css';
 
 const ItemDetails = () => {
   const { name } = useParams();

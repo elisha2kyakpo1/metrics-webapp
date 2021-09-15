@@ -1,21 +1,48 @@
 import { useEffect } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { ArrowBackIos, Settings, Mic } from '@material-ui/icons';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import { MetricsData } from '../redux/metrics/Metrics';
 import './Metrics.css';
 import homeImg from '../assets/images/europe.png';
+import { fetchCountries } from '../redux/metrics/Metrics';
+
+const Item = ({ confirmed, name }) => (
+  <div className="Home-item-content">
+    <div className="Home-item-icon">
+      <ArrowForwardIcon />
+    </div>
+    <div className="Home-item-top">
+      <img src={homeImg} alt="" className="Home-item-image" />
+    </div>
+    <div className="Home-item-bottom">
+      <h4 className="App-title">{name}</h4>
+      <p className="App-subtitle">{confirmed}</p>
+    </div>
+  </div>
+);
+
+const Grid = ({ items = [] }) => (
+  <ul className="country-data">
+    {items.map(({ name, confirmed }) => (
+      <li key={name} className="country">
+        <Link to={`/country/${name}`}>
+          <Item confirmed={confirmed} name={name} />
+        </Link>
+      </li>
+    ))}
+  </ul>
+);
 
 const Metrics = () => {
-  const metrics = useSelector((state) => state.MetricsReducer);
+  const { items, totalConfirmed } = useSelector((state) => state.MetricsReducer);
 
-  console.log(metrics);
-
+  console.log(items);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!metrics.length) {
-      dispatch(MetricsData());
+    if (!items.length) {
+      dispatch(fetchCountries('Africa'));
     }
   }, []);
 
@@ -26,12 +53,12 @@ const Metrics = () => {
     backgroundRepeat: 'no-repeat',
   };
 
-  const corona = {
-    backgroundImage: `url(${homeImg})`,
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-  };
+  // const corona = {
+  //   backgroundImage: `url(${homeImg})`,
+  //   backgroundPosition: 'center',
+  //   backgroundSize: 'cover',
+  //   backgroundRepeat: 'no-repeat',
+  // };
 
   return (
     <div className="metrics">
@@ -52,39 +79,30 @@ const Metrics = () => {
         <div className="home-img" style={styles}> </div>
         <div className="continent">
           <div>
-            <h2>
-              {/* {final[1]} */}
-            </h2>
-            <h4>
-              Africa
-              {/* <span>{comfirmed}</span> */}
-            </h4>
+            <h2>Africa</h2>
+            <span>{totalConfirmed}</span>
           </div>
         </div>
       </div>
       <div className="country-cont">
-        <h4 className="stats">STATS BY COUNTRY</h4>
         <div className="country-data">
-          {metrics.map((data) => (
-            <div key={data.country} className="even">
-              <div style={corona} className="country">
-                <div className="arrow-forward-btn">
-                  <ArrowForwardIcon />
-                </div>
-                <div className="country-item">
-                  <div className="corona"> </div>
-                  <h4>{data.country}</h4>
-                  <p className="para">
-                    {}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
+          <section className="country-cont">
+            <h5 className="stats">STATS BY COUNTRY</h5>
+            <Grid items={items} />
+          </section>
         </div>
       </div>
     </div>
   );
+};
+
+Item.propTypes = {
+  confirmed: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+};
+
+Grid.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.shape(Item.propTypes)).isRequired,
 };
 
 export default Metrics;
