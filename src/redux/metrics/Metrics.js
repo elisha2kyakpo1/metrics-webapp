@@ -65,6 +65,8 @@ const fetchCountries = (continent) => async (dispatch) => {
 };
 
 export {
+  loadMetricsCountry,
+  loadMetricsCountries,
   fetchCountries,
   fetchCountry,
   MetricsReducer,

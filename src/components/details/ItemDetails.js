@@ -9,7 +9,9 @@ import { fetchCountry } from '../../redux/metrics/Metrics';
 const ItemDetails = () => {
   const { name } = useParams();
   const dispatch = useDispatch();
-  const { country } = useSelector((state) => state.MetricsReducer.selected);
+  const { country } = useSelector((state) => ({
+    country: state.MetricsReducer.selected,
+  }));
 
   useEffect(() => {
     dispatch(fetchCountry(name));
