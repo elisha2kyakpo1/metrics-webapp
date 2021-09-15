@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+// import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { ArrowBackIos, Settings, Mic } from '@material-ui/icons';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
@@ -8,10 +9,8 @@ import homeImg from '../assets/images/europe.png';
 
 const Metrics = () => {
   const metrics = useSelector((state) => state.MetricsReducer);
-  const filtered = metrics.slice(100, 120);
-  const newArray = filtered;
-  const final = newArray.map((arr) => arr.continent);
-  const totalCases = newArray.map((arr) => arr.cases.total);
+
+  console.log(metrics);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -54,19 +53,19 @@ const Metrics = () => {
         <div className="continent">
           <div>
             <h2>
-              {final[1]}
+              {/* {final[1]} */}
             </h2>
             <h4>
-              {totalCases[1]}
-              <span> Cases</span>
+              Africa
+              {/* <span>{comfirmed}</span> */}
             </h4>
           </div>
         </div>
       </div>
       <div className="country-cont">
-        <h4 className="stats">Stats by country</h4>
+        <h4 className="stats">STATS BY COUNTRY</h4>
         <div className="country-data">
-          {filtered.map((data) => (
+          {metrics.map((data) => (
             <div key={data.country} className="even">
               <div style={corona} className="country">
                 <div className="arrow-forward-btn">
@@ -76,7 +75,7 @@ const Metrics = () => {
                   <div className="corona"> </div>
                   <h4>{data.country}</h4>
                   <p className="para">
-                    {data.cases.active}
+                    {}
                   </p>
                 </div>
               </div>

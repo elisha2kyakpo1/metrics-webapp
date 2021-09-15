@@ -7,15 +7,23 @@ const LoadMetrics = (payload) => ({
 
 const MetricsReducer = (state = [], action) => {
   switch (action.type) {
-    case FETCH_METRICS:
-      return action.payload.response;
+    case FETCH_METRICS: {
+      const loadCountries = Object.entries(action.payload).map(([key]) => {
+        const [country] = key;
+        return {
+          ...country,
+        };
+      });
+
+      return loadCountries;
+    }
     default:
       return state;
   }
 };
 
-const MetricsData = (continent, country) => (dispatch) => {
-  fetch(`https://covid-api.mmediagroup.fr/v1/cases?continent=${continent}&country=${country}`)
+const MetricsData = (continent = 'Africa') => (dispatch) => {
+  fetch(`https://covid-api.mmediagroup.fr/v1/cases?continent=${continent}`)
     .then((response) => response.json())
     .then((json) => dispatch(LoadMetrics(json)));
 };
