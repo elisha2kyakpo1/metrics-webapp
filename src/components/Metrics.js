@@ -22,7 +22,7 @@ const Item = ({ confirmed, name }) => (
     </div>
     <div className="corona"> </div>
     <div className="country-title">
-      <div>
+      <div className="confirmed-cases">
         <h4 className="">{name}</h4>
         <p className="para">{confirmed}</p>
       </div>
@@ -32,7 +32,7 @@ const Item = ({ confirmed, name }) => (
 
 const Grid = ({ items = [] }) => (
   <div className="country-cont">
-    <h5 className="stats">STATS BY COUNTRY</h5>
+    <h4 className="stats">STATS BY COUNTRY</h4>
     <div className="country-data">
       {items.map(({ name, confirmed }) => (
         <div key={name} className="even">

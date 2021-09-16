@@ -6,7 +6,6 @@
 
 .country-title {
   justify-content: flex-end;
-  margin-bottom: 10px;
 }
 
 .even {
@@ -72,7 +71,7 @@
 }
 
 .corona {
-  height: 150px;
+  height: 140px;
 }
 
 .country-data,
@@ -89,9 +88,8 @@
 
 .stats {
   color: #fff;
-  font-size: 1.2rem;
   font-weight: 500;
-  margin-left: 8px;
+  padding: 8px;
   font-family: GillSansMedium, sans-serif;
 }
 

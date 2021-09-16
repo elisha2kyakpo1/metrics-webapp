@@ -64,14 +64,15 @@ const ItemDetails = () => {
           </div>
         </div>
       </div>
-      <section className="Home-stats">
-        <h5 className="App-section-title">CITY/TOWN BREAKDOWN - 2021</h5>
+      <section className="details-stats">
+        <h5 className="section-title">CITY/TOWN BREAKDOWN - 2021</h5>
         <ul>
           {list.map(([name]) => (
             <li key={name} className="Details-item">
-              <h6 className="Detail-title">{name}</h6>
-              <div className="Details-right">
-                <p className="App-subtitle">
+              <h3 className="city">{name}</h3>
+              <div className="details-right">
+                <h4 className="city2">{All.confirmed}</h4>
+                <p className="cases">
                   {' '}
                   cases
                 </p>
