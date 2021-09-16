@@ -6,6 +6,7 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import './ItemDetails.css';
 import { fetchCountry } from '../../redux/metrics/Metrics';
 import homeImg from '../../assets/svg/corona.svg';
+import { formatNumber } from '../Metrics';
 
 const ItemDetails = () => {
   const { name } = useParams();
@@ -57,7 +58,7 @@ const ItemDetails = () => {
           <div>
             <h2>{All.country}</h2>
             <h4>
-              {All.confirmed}
+              {formatNumber(All.confirmed)}
               {' '}
               <span>Cases</span>
             </h4>
@@ -71,7 +72,7 @@ const ItemDetails = () => {
             <li key={name} className="Details-item">
               <h3 className="city">{name}</h3>
               <div className="details-right">
-                <h4 className="city2">{All.confirmed}</h4>
+                <h4 className="city2">{formatNumber(All.confirmed)}</h4>
                 <p className="cases">
                   {' '}
                   cases

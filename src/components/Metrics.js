@@ -8,6 +8,8 @@ import './Metrics.css';
 import homeImg from '../assets/images/europe.png';
 import { fetchCountries } from '../redux/metrics/Metrics';
 
+export const formatNumber = (num) => num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '1,');
+
 const corona = {
   backgroundImage: `url(${homeImg})`,
   backgroundPosition: 'center',
@@ -24,7 +26,7 @@ const Item = ({ confirmed, name }) => (
     <div className="country-title">
       <div className="confirmed-cases">
         <h4 className="">{name}</h4>
-        <p className="para">{confirmed}</p>
+        <p className="para">{formatNumber(confirmed)}</p>
       </div>
     </div>
   </div>
@@ -38,7 +40,7 @@ const Grid = ({ items = [] }) => (
         <div key={name} className="even">
           <div style={corona} className="country">
             <Link to={`/country/${name}`}>
-              <Item confirmed={confirmed} name={name} />
+              <Item confirmed={formatNumber(confirmed)} name={name} />
             </Link>
           </div>
         </div>
@@ -94,7 +96,7 @@ const Metrics = () => {
           <div>
             <h2>{continent}</h2>
             <span>
-              {totalConfirmed}
+              {formatNumber(totalConfirmed)}
               {' '}
               Cases
             </span>
