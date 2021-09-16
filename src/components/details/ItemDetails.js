@@ -5,11 +5,13 @@ import { ArrowBackIos, Settings, Mic } from '@material-ui/icons';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import './ItemDetails.css';
 import { fetchCountry } from '../../redux/metrics/Metrics';
+import homeImg from '../../assets/svg/corona.svg';
 
 const ItemDetails = () => {
   const { name } = useParams();
   const dispatch = useDispatch();
-  const { country } = useSelector((state) => ({
+  const { country, loading } = useSelector((state) => ({
+    loading: state.loadingBarReducer.default,
     country: state.MetricsReducer.selected,
   }));
 
@@ -17,25 +19,49 @@ const ItemDetails = () => {
     dispatch(fetchCountry(name));
   }, []);
 
+  if (loading || !country) {
+    return null;
+  }
+
   const { All } = country;
   const list = Object.entries(country).slice(1);
 
+  const styles = {
+    backgroundImage: `url(${homeImg})`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    opacity: '0.5',
+  };
+
   return (
-    <section>
-      <header className="App-header">
-        <Link to="/">
-          <ArrowBackIos />
-        </Link>
-        <h5 className="App-header-title">town/city views</h5>
-        <Mic />
-        <div className="pl-5">
+    <section className="details">
+      <header className="header">
+        <div className="arrow">
+          <Link to="/">
+            <ArrowBackIos />
+          </Link>
+          <span>2021</span>
+        </div>
+        <div>
+          <h4 className="header-title">town/city views</h4>
+        </div>
+        <div className="settings">
           <Settings />
+          <Mic />
         </div>
       </header>
-      <div className="Details-banner">
-        <div className="Details-banner-left"> </div>
-        <div className="Details-banner-right">
-          <h1 className="App-title">{All.country}</h1>
+      <div className="continent-cont">
+        <div style={styles} className="home-img"> </div>
+        <div className="continent">
+          <div>
+            <h2>{All.country}</h2>
+            <h4>
+              {All.confirmed}
+              {' '}
+              <span>Cases</span>
+            </h4>
+          </div>
         </div>
       </div>
       <section className="Home-stats">

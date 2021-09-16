@@ -1,3 +1,5 @@
+import { showLoading, hideLoading } from 'react-redux-loading-bar';
+
 const FETCH_SELECTED = 'metrics/FETCH_SELECTED';
 const FETCH_CONTINENTS = 'metrics/FETCH_CONTINENTS';
 
@@ -41,11 +43,14 @@ const MetricsDataCountry = async (country) => {
 };
 
 const fetchCountry = (country) => async (dispatch) => {
+  dispatch(showLoading());
   const data = await MetricsDataCountry(country);
   dispatch(loadMetricsCountry(data));
+  dispatch(hideLoading());
 };
 
 const fetchCountries = (continent) => async (dispatch) => {
+  dispatch(showLoading());
   const map = await MetricsDataContinent(continent);
   const data = Object.values(map).reduce((accumulator, currentValue) => {
     const { All: { country, confirmed } } = currentValue;
@@ -62,6 +67,7 @@ const fetchCountries = (continent) => async (dispatch) => {
   data.items = data.items.sort((a, b) => b.confirmed - a.confirmed);
 
   dispatch(loadMetricsCountries(data));
+  dispatch(hideLoading());
 };
 
 export {

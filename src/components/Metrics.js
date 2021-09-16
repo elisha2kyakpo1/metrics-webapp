@@ -48,14 +48,23 @@ const Grid = ({ items = [] }) => (
 );
 
 const Metrics = () => {
-  const { items, totalConfirmed } = useSelector((state) => state.MetricsReducer);
+  const { items, totalConfirmed, loading } = useSelector((state) => ({
+    ...state.MetricsReducer,
+    loading: state.loadingBarReducer.default,
+  }));
+
+  const continent = 'Europe';
 
   const dispatch = useDispatch();
   useEffect(() => {
     if (!items.length) {
-      dispatch(fetchCountries('Africa'));
+      dispatch(fetchCountries(continent));
     }
   }, []);
+
+  if (loading) {
+    return null;
+  }
 
   const styles = {
     backgroundImage: `url(${homeImg})`,
@@ -66,7 +75,7 @@ const Metrics = () => {
 
   return (
     <div className="metrics">
-      <div className="header">
+      <header className="header">
         <div className="arrow">
           <ArrowBackIos />
           <span>2021</span>
@@ -78,12 +87,12 @@ const Metrics = () => {
           <Settings />
           <Mic />
         </div>
-      </div>
+      </header>
       <div className="continent-cont">
         <div className="home-img" style={styles}> </div>
         <div className="continent">
           <div>
-            <h2>Africa</h2>
+            <h2>{continent}</h2>
             <span>
               {totalConfirmed}
               {' '}
