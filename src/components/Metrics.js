@@ -6,7 +6,7 @@ import { ArrowBackIos, Settings, Mic } from '@material-ui/icons';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import './Metrics.css';
 import homeImg from '../assets/images/europe.png';
-import { fetchCountries } from '../redux/metrics/Metrics';
+import { fetchCountries } from '../redux/metrics/Stateless';
 
 export const formatNumber = (num) => num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '1,');
 

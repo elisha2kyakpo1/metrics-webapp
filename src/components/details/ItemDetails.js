@@ -4,9 +4,9 @@ import { Link, useParams } from 'react-router-dom';
 import { ArrowBackIos, Settings, Mic } from '@material-ui/icons';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import './ItemDetails.css';
-import { fetchCountry } from '../../redux/metrics/Metrics';
 import homeImg from '../../assets/svg/corona.svg';
 import { formatNumber } from '../Metrics';
+import { fetchCountry } from '../../redux/metrics/Stateless';
 
 const ItemDetails = () => {
   const { name } = useParams();
