@@ -1,7 +1,7 @@
-import { loadMetricsCountry, MetricsReducer } from './Metrics';
+import reducer, { addCountry } from './covidInfo';
 
 test('should return the initial state', () => {
-  expect(MetricsReducer(undefined, {})).toEqual(
+  expect(reducer(undefined, {})).toEqual(
     {
       countries: [],
       totalConfirmed: 0,
@@ -15,9 +15,9 @@ test('should handle a country\'s data being added to the store', () => {
     totalConfirmed: 0,
   };
 
-  const newState = MetricsReducer(previousState, loadMetricsCountry({
-    name: 'Angola',
-    id: 'Angola',
+  const newState = reducer(previousState, addCountry({
+    name: 'South Africa',
+    id: 'SouthAfrica',
     total_confirmed: 50,
   }));
 
@@ -25,8 +25,8 @@ test('should handle a country\'s data being added to the store', () => {
     {
       countries: [
         {
-          name: 'Angola',
-          id: 'Angola',
+          name: 'South Africa',
+          id: 'SouthAfrica',
           total_confirmed: 50,
         },
       ],

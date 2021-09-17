@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowAltCircleRight } from '@fortawesome/fontawesome-free-solid';
+import 'font-awesome/css/font-awesome.min.css';
 import { Col, InputGroup, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { LinkContainer } from 'react-router-bootstrap';
-import homeImg from '../assets/images/europe.png';
-import { countries, totalConfirmed } from '../redux/metrics/Metrics';
+import { countries, totalConfirmed } from '../redux/CovidInfo/covidInfo';
+import World from './globe-africa-solid.svg';
 
 const Filter = (props) => {
   const filterValues = (e) => {
@@ -13,8 +15,10 @@ const Filter = (props) => {
   };
   return (
     <InputGroup className="mb-3">
+      <span className="input-group-prepend">
+        <i className="input-group-text fa fa-search" />
+      </span>
       <input type="text" onChange={filterValues} className="form-control no-shadow" placeholder="Search Specific Country" />
-      <input type="submit" value="Search" />
     </InputGroup>
   );
 };
@@ -23,7 +27,7 @@ Filter.propTypes = {
   setFilter: PropTypes.func.isRequired,
 };
 
-const Metrics = () => {
+export default function Home() {
   const [filter, setFilter] = useState('');
   const countryComponents = useSelector(countries)
     .filter(({ name }) => name.toLowerCase().startsWith(filter.toLowerCase()))
@@ -39,7 +43,7 @@ const Metrics = () => {
           ${([1, 0, 0, 1][index % 4]) ? 'bg-blue-dark' : 'bg-blue-light'}
         `}
         >
-          <ArrowForwardIcon />
+          <FontAwesomeIcon icon={faArrowAltCircleRight} className="text-white mt-1 mb-4 h5" />
           <span
             className="d-flex flex-column align-items-end text-white mt-4"
             style={{ cursor: 'pointer' }}
@@ -62,7 +66,7 @@ const Metrics = () => {
       <Row className="m-0">
         <Col xs={6} sm={6} md={6} className="d-flex justify-content-end">
           <img
-            src={homeImg}
+            src={World}
             alt="World"
             height="150px"
           />
@@ -89,6 +93,4 @@ const Metrics = () => {
       </Row>
     </div>
   );
-};
-
-export default Metrics;
+}

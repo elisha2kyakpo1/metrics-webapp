@@ -1,10 +1,10 @@
 import { Row, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { countries } from '../../redux/metrics/Metrics';
-import homeImg from '../../assets/svg/corona.svg';
+import { countries } from '../redux/CovidInfo/covidInfo';
+import Africa from './globe-africa-solid.svg';
 
-const ItemDetails = () => {
+export default function Details() {
   const params = useParams();
   const { id } = params;
   const country = useSelector(countries).find((country) => country.id === id);
@@ -40,7 +40,7 @@ const ItemDetails = () => {
       <Row className="m-0">
         <Col xs={6} sm={6} md={6} className="d-flex justify-content-end">
           <img
-            src={homeImg}
+            src={Africa}
             alt="Africa"
             height="150px"
           />
@@ -67,6 +67,4 @@ const ItemDetails = () => {
       {states}
     </div>
   );
-};
-
-export default ItemDetails;
+}
