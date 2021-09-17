@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { countries } from '../../redux/metrics/Metrics';
 import homeImg from '../../assets/svg/corona.svg';
 
-export default function Details() {
+const ItemDetails = () => {
   const params = useParams();
   const { id } = params;
   const country = useSelector(countries).find((country) => country.id === id);
@@ -67,4 +67,6 @@ export default function Details() {
       {states}
     </div>
   );
-}
+};
+
+export default ItemDetails;

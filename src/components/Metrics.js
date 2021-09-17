@@ -23,7 +23,7 @@ Filter.propTypes = {
   setFilter: PropTypes.func.isRequired,
 };
 
-export default function Home() {
+const Metrics = () => {
   const [filter, setFilter] = useState('');
   const countryComponents = useSelector(countries)
     .filter(({ name }) => name.toLowerCase().startsWith(filter.toLowerCase()))
@@ -89,4 +89,6 @@ export default function Home() {
       </Row>
     </div>
   );
-}
+};
+
+export default Metrics;

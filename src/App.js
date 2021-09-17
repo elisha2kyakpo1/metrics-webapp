@@ -1,52 +1,46 @@
 import {
-  BrowserRouter as Router,
   Route,
   Switch,
   Link,
+  BrowserRouter as Router,
 } from 'react-router-dom';
-import { ArrowBackIos, Settings, Mic } from '@material-ui/icons';
+import { Settings, Mic } from '@material-ui/icons';
+import { Navbar } from 'react-bootstrap';
 import './App.css';
-import Metrics from './components/Metrics';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 import ItemDetails from './components/details/ItemDetails';
+import Metrics from './components/Metrics';
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Metrics,
-  },
-  {
-    path: '/country/:name',
-    name: 'Details',
-    component: ItemDetails,
-  },
-];
-
-const App = () => (
-  <>
-    <header className="header">
-      <div className="arrow">
-        <Link to="/">
-          <ArrowBackIos />
-        </Link>
-        <span>2021</span>
-      </div>
-      <div>
-        <h4 className="header-title">town/city views</h4>
-      </div>
-      <div className="settings">
-        <Settings />
-        <Mic />
-      </div>
-    </header>
-    <Router>
-      <Switch>
-        {routes.map(({ path, component }) => (
-          <Route key={path} exact path={path} component={component} />
-        ))}
-      </Switch>
-    </Router>
-  </>
-);
+function App() {
+  return (
+    <>
+      <Router>
+        <header>
+          <Navbar className="px-4 text-white bg-blue-dark d-flex justify-content-between">
+            <Link to="/" className="text-decoration-none text-white fw-bold">
+              &#60; 2021
+            </Link>
+            <h3 className="m-0">COVID-19 STATS</h3>
+            <span>
+              <Mic />
+              <Settings />
+            </span>
+          </Navbar>
+        </header>
+        <main>
+          <Switch>
+            <Route path="/details/:id">
+              <ItemDetails />
+            </Route>
+            <Route path="/">
+              <Metrics />
+            </Route>
+          </Switch>
+        </main>
+      </Router>
+    </>
+  );
+}
 
 export default App;
