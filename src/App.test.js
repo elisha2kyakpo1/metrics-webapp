@@ -1,18 +1,19 @@
-import { render, screen, fireEvent } from './Test.utils';
+import {
+  render, screen,
+} from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
+import store from './redux/configureStore';
 import App from './App';
 
-jest.mock('./redux/countries/api.js');
-
-test('home page should fetch and render countries', async () => {
-  render(<App />);
-
-  expect(await screen.findByText(/Testing1/)).toBeInTheDocument();
-});
-
-test('details page should fetch and render country', async () => {
-  render(<App />);
-
-  fireEvent.click(screen.getByText(/Testing1/));
-
-  expect(await screen.findByText(/Testing3/)).toBeInTheDocument();
+test('Should display the header', () => {
+  render(
+    <Provider store={store}>
+      <Router>
+        <App />
+      </Router>
+    </Provider>,
+  );
+  const headerText = screen.getByText(/COVID-19 STATS/i);
+  expect(headerText).toBeInTheDocument();
 });

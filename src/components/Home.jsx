@@ -61,7 +61,7 @@ export default function Home() {
     ));
 
   return (
-    <div className="pt-3">
+    <div className="">
       <Row className="m-0">
         <Col xs={6} sm={6} md={6} className="d-flex justify-content-end">
           <img
@@ -70,16 +70,16 @@ export default function Home() {
             height="150px"
           />
         </Col>
-        <Col xs={6} sm={6} md={6} className="p-0 text-white d-flex flex-column justify-content-center">
+        <Col xs={6} sm={6} md={6} className="p-0 continent text-white d-flex flex-column justify-content-center">
           <h2 className="fw-bold m-0">World</h2>
           <p>
             {Number(useSelector(totalConfirmed)).toLocaleString()}
             {' '}
-            Total Cases
+            Cases
           </p>
         </Col>
       </Row>
-      <Row className="pt-3 m-0 mt-4 row-div" style={{ cursor: 'pointer' }}>
+      <Row className="pt-3 m-0 pl-4 mt-4 row-div" style={{ cursor: 'pointer' }}>
         <Row>
           <Col xs={12} sm={12} md={2}>
             <h6 className="text-white fw-bold m-0 p-2 d-inline-block">STATS BY COUNTRY</h6>

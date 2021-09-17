@@ -3,17 +3,15 @@ import React from 'react';
 import { render as rtlRender } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { loadingBarReducer } from 'react-redux-loading-bar';
 import thunk from 'redux-thunk';
-import { MetricsReducer } from './redux/metrics/Metrics';
+import reducer from './redux/Metrics/covidInfo';
 
-const reducer = combineReducers({
-  countries: MetricsReducer,
-  loadingBar: loadingBarReducer,
+const reducerData = combineReducers({
+  countries: reducer,
 });
 
 const store = createStore(
-  reducer,
+  reducerData,
   applyMiddleware(thunk),
 );
 
