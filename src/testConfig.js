@@ -2,7 +2,7 @@ import React from 'react';
 import { render as rtlRender } from '@testing-library/react';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-import { MetricsReducer } from './redux/metrics/Metrics';
+import reducer from './redux/Metrics/covidInfo';
 
 function render(
   ui,
@@ -10,7 +10,7 @@ function render(
     preloadedState,
     store = configureStore({
       reducer: {
-        MetricsReducer,
+        reducer,
       },
       preloadedState,
     }),
