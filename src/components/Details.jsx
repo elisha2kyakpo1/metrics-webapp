@@ -1,7 +1,7 @@
 import { Row, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { countries } from '../redux/CovidInfo/covidInfo';
+import { countries } from '../redux/Metrics/covidInfo';
 import Africa from './globe-africa-solid.svg';
 
 export default function Details() {
@@ -10,11 +10,10 @@ export default function Details() {
   const country = useSelector(countries).find((country) => country.id === id);
   const states = (country.regions.length > 0
     ? (country.regions.map(
-      (region, index) => (
+      (region) => (
         <div
           className={`d-flex justify-content-between
           align-items-center p-2 text-white
-          ${index % 2 ? 'bg-blue-dark' : 'bg-blue-light'
       }`}
           key={region.id}
         >
@@ -30,13 +29,13 @@ export default function Details() {
       ),
     ))
     : (
-      <div className="bg-blue-dark text-white d-flex align-items-center p-2">
+      <div className="dark text-white d-flex align-items-center p-2">
         <h5 className="m-0 fw-light ps-3">These Regions Are Currently Not At Our Disposal</h5>
       </div>
     ));
 
   return (
-    <div className="pt-3 bg-blue-light">
+    <div className="pt-3 details">
       <Row className="m-0">
         <Col xs={6} sm={6} md={6} className="d-flex justify-content-end">
           <img

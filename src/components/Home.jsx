@@ -6,8 +6,8 @@ import 'font-awesome/css/font-awesome.min.css';
 import { Col, InputGroup, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
-import { countries, totalConfirmed } from '../redux/CovidInfo/covidInfo';
-import World from './globe-africa-solid.svg';
+import { countries, totalConfirmed } from '../redux/Metrics/covidInfo';
+import World from './corona.svg';
 
 const Filter = (props) => {
   const filterValues = (e) => {
@@ -31,16 +31,15 @@ export default function Home() {
   const [filter, setFilter] = useState('');
   const countryComponents = useSelector(countries)
     .filter(({ name }) => name.toLowerCase().startsWith(filter.toLowerCase()))
-    .map((country, index) => (
+    .map((country) => (
       <LinkContainer key={country.id} to={`/details/${country.id}`}>
         <Col
           xs={6}
           sm={6}
           md={3}
           className={`
-          d-flex flex-column justify-content-between
+          d-flex flex-column country justify-content-between
           align-items-end
-          ${([1, 0, 0, 1][index % 4]) ? 'bg-blue-dark' : 'bg-blue-light'}
         `}
         >
           <FontAwesomeIcon icon={faArrowAltCircleRight} className="text-white mt-1 mb-4 h5" />
@@ -62,7 +61,7 @@ export default function Home() {
     ));
 
   return (
-    <div className="pt-3 bg-blue-light">
+    <div className="pt-3">
       <Row className="m-0">
         <Col xs={6} sm={6} md={6} className="d-flex justify-content-end">
           <img
@@ -72,7 +71,7 @@ export default function Home() {
           />
         </Col>
         <Col xs={6} sm={6} md={6} className="p-0 text-white d-flex flex-column justify-content-center">
-          <h1 className="fw-bold m-0">GLOBAL</h1>
+          <h2 className="fw-bold m-0">World</h2>
           <p>
             {Number(useSelector(totalConfirmed)).toLocaleString()}
             {' '}
@@ -80,7 +79,7 @@ export default function Home() {
           </p>
         </Col>
       </Row>
-      <Row className="pt-3 m-0 mt-4 bg-blue-dark" style={{ cursor: 'pointer' }}>
+      <Row className="pt-3 m-0 mt-4 row-div" style={{ cursor: 'pointer' }}>
         <Row>
           <Col xs={12} sm={12} md={2}>
             <h6 className="text-white fw-bold m-0 p-2 d-inline-block">STATS BY COUNTRY</h6>

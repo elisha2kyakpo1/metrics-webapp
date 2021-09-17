@@ -3,16 +3,23 @@
   padding: 0;
 }
 
-.bg-blue-dark {
-  background: rgb(67, 105, 175);
+.details,
+.cont {
+  background-color: #eb4c89;
 }
 
-.bg-blue-light {
-  background-color: rgb(88, 137, 229) !important;
+.dark,
+.header {
+  background-color: rgba(0, 0, 0, 0.08);
 }
 
-body {
-  background-color: rgb(62, 108, 194) !important;
+.country:nth-child(4n + 2),
+.country:nth-child(4n + 1) {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.app {
+  background-color: #eb4c89;
 }
 
 .no-shadow:focus {

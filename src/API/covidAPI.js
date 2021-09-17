@@ -1,4 +1,4 @@
-import { addCountry, setTotal } from '../redux/CovidInfo/covidInfo';
+import { addCountry, setTotal } from '../redux/Metrics/covidInfo';
 
 const apiEndpoint = 'https://api.covid19tracking.narrativa.com/api/';
 

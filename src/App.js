@@ -11,11 +11,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <>
-      <header>
+    <div className="cont">
+      <header className="header">
         <Navbar className="px-4 text-white bg-blue-dark d-flex justify-content-between">
           <Link to="/" className="text-decoration-none text-white fw-bold">
-            &#60; HOME
+            &#60; 2021
           </Link>
           <h3 className="m-0">COVID-19 STATS</h3>
           <span>
@@ -24,7 +24,7 @@ function App() {
           </span>
         </Navbar>
       </header>
-      <main>
+      <section className="main">
         <Switch>
           <Route path="/details/:id">
             <Details />
@@ -33,8 +33,8 @@ function App() {
             <Home />
           </Route>
         </Switch>
-      </main>
-    </>
+      </section>
+    </div>
   );
 }
 
