@@ -13,6 +13,14 @@
   padding-bottom: 10px;
 }
 
+.options {
+  border-bottom: 1px solid lightgray;
+}
+
+.search {
+  color: #eb4c89;
+}
+
 .country-title,
 .arrow-forward-btn,
 .continent,

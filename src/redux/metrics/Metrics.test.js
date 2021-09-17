@@ -1,55 +1,36 @@
-import { MetricsReducer, loadMetricsCountry, loadMetricsCountries } from './Metrics';
+import { loadMetricsCountry, MetricsReducer } from './Metrics';
 
 test('should return the initial state', () => {
-  const initialState = {
-    totalConfirmed: 0,
-    items: [],
-    selected: null,
-  };
-
-  const newState = MetricsReducer(undefined, {});
-
-  expect(newState).toEqual(initialState);
+  expect(MetricsReducer(undefined, {})).toEqual(
+    {
+      countries: [],
+      totalConfirmed: 0,
+    },
+  );
 });
 
-test('should handle adding countries', () => {
-  const prevState = {
+test('should handle a country\'s data being added to the store', () => {
+  const previousState = {
+    countries: [],
     totalConfirmed: 0,
-    items: [],
   };
-  const items = [
-    { country: 'Testing country 1', confirmed: 3 },
-    { country: 'Testing country 2', confirmed: 2 },
-  ];
 
-  const newState = MetricsReducer(prevState, loadMetricsCountries({
-    items,
-    totalConfirmed: 5,
+  const newState = MetricsReducer(previousState, loadMetricsCountry({
+    name: 'Angola',
+    id: 'Angola',
+    total_confirmed: 50,
   }));
 
-  expect(newState).toEqual({
-    totalConfirmed: 5,
-    items,
-  });
-});
-
-test('should handle adding selected country', () => {
-  const prevState = {
-    totalConfirmed: 0,
-    items: [],
-    selected: null,
-  };
-  const data = {
-    All: {
-      country: 'Testing',
+  expect(newState).toEqual(
+    {
+      countries: [
+        {
+          name: 'Angola',
+          id: 'Angola',
+          total_confirmed: 50,
+        },
+      ],
+      totalConfirmed: 0,
     },
-  };
-
-  const newState = MetricsReducer(prevState, loadMetricsCountry(data));
-
-  expect(newState).toEqual({
-    totalConfirmed: 0,
-    items: [],
-    selected: data,
-  });
+  );
 });

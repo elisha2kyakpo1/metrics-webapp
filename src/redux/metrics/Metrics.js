@@ -1,35 +1,37 @@
-const FETCH_SELECTED = 'metrics/FETCH_SELECTED';
-const FETCH_CONTINENTS = 'metrics/FETCH_CONTINENTS';
+const FETCH_TOTAL_SELECTED = 'metrics/FETCH_TOTAL_SELECTED';
+const FETCH_COUNTRY = 'metrics/FETCH_COUNTRY';
 
-const loadMetricsCountries = (payload) => ({
-  type: FETCH_CONTINENTS,
+const loadMetricsCountry = (payload) => ({
+  type: FETCH_COUNTRY,
   payload,
 });
 
-const loadMetricsCountry = (payload) => ({
-  type: FETCH_SELECTED,
+const loadMetricsTotal = (payload) => ({
+  type: FETCH_TOTAL_SELECTED,
   payload,
 });
 
 const initialState = {
   totalConfirmed: 0,
-  items: [],
-  selected: null,
+  countries: [],
 };
 
 const MetricsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_CONTINENTS:
-      return action.payload;
-    case FETCH_SELECTED:
-      return { ...state, selected: action.payload };
+    case FETCH_COUNTRY:
+      return { ...state, countries: [...state.countries, action.payload] };
+    case FETCH_TOTAL_SELECTED:
+      return { ...state, totalConfirmed: action.payload };
     default:
       return state;
   }
 };
 
+export const countries = (state) => state.countries;
+export const totalConfirmed = (state) => state.totalConfirmed;
+
 export {
   loadMetricsCountry,
-  loadMetricsCountries,
+  loadMetricsTotal,
   MetricsReducer,
 };

@@ -1,90 +1,70 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
-import { ArrowBackIos, Settings, Mic } from '@material-ui/icons';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-import './ItemDetails.css';
+import { Row, Col } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { countries } from '../../redux/metrics/Metrics';
 import homeImg from '../../assets/svg/corona.svg';
-import { formatNumber } from '../Metrics';
-import { fetchCountry } from '../../redux/metrics/Stateless';
 
-const ItemDetails = () => {
-  const { name } = useParams();
-  const dispatch = useDispatch();
-  const { country, loading } = useSelector((state) => ({
-    loading: state.loadingBarReducer.default,
-    country: state.MetricsReducer.selected,
-  }));
-
-  useEffect(() => {
-    dispatch(fetchCountry(name));
-  }, []);
-
-  if (loading || !country) {
-    return null;
-  }
-
-  const { All } = country;
-  const list = Object.entries(country).slice(1);
-
-  const styles = {
-    backgroundImage: `url(${homeImg})`,
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    opacity: '0.5',
-  };
+export default function Details() {
+  const params = useParams();
+  const { id } = params;
+  const country = useSelector(countries).find((country) => country.id === id);
+  const states = (country.regions.length > 0
+    ? (country.regions.map(
+      (region, index) => (
+        <div
+          className={`d-flex justify-content-between
+          align-items-center p-2 text-white
+          ${index % 2 ? 'bg-blue-dark' : 'bg-blue-light'
+      }`}
+          key={region.id}
+        >
+          <h5 className="m-0 fw-light">{region.name}</h5>
+          <span className="d-flex align-items-center">
+            <p className="m-0 me-2">
+              {Number(region.today_confirmed).toLocaleString()}
+              {' '}
+              Cases
+            </p>
+          </span>
+        </div>
+      ),
+    ))
+    : (
+      <div className="bg-blue-dark text-white d-flex align-items-center p-2">
+        <h5 className="m-0 fw-light ps-3">These Regions Are Currently Not At Our Disposal</h5>
+      </div>
+    ));
 
   return (
-    <section className="details">
-      <header className="header">
-        <div className="arrow">
-          <Link to="/">
-            <ArrowBackIos />
-          </Link>
-          <span>2021</span>
-        </div>
-        <div>
-          <h4 className="header-title">town/city views</h4>
-        </div>
-        <div className="settings">
-          <Settings />
-          <Mic />
-        </div>
-      </header>
-      <div className="continent-cont">
-        <div style={styles} className="home-img"> </div>
-        <div className="continent">
-          <div>
-            <h2>{All.country}</h2>
-            <h4>
-              {formatNumber(All.confirmed)}
-              {' '}
-              <span>Cases</span>
-            </h4>
-          </div>
-        </div>
-      </div>
-      <section className="details-stats">
-        <h5 className="section-title">CITY/TOWN BREAKDOWN - 2021</h5>
-        <ul>
-          {list.map(([name]) => (
-            <li key={name} className="Details-item">
-              <h3 className="city">{name}</h3>
-              <div className="details-right">
-                <h4 className="city2">{formatNumber(All.confirmed)}</h4>
-                <p className="cases">
-                  {' '}
-                  cases
-                </p>
-                <ArrowForwardIcon />
-              </div>
-            </li>
-          ))}
-        </ul>
-      </section>
-    </section>
+    <div className="pt-3 bg-blue-light">
+      <Row className="m-0">
+        <Col xs={6} sm={6} md={6} className="d-flex justify-content-end">
+          <img
+            src={homeImg}
+            alt="Africa"
+            height="150px"
+          />
+        </Col>
+        <Col
+          xs={6}
+          sm={6}
+          md={6}
+          className="p-0 text-white d-flex flex-column justify-content-center align-items-end pe-4"
+        >
+          <h1 className="fw-bold m-0">{country ? country.name.toUpperCase() : 'Loading...'}</h1>
+          <p>
+            {country ? Number(country.today_confirmed).toLocaleString() : '0'}
+            {' '}
+            Total Cases
+          </p>
+        </Col>
+      </Row>
+      <Row className="m-0 mt-4 bg-blue-dark">
+        <h6 className="text-white fw-bold p-2 m-0">
+          {`${country.name.toUpperCase()} CASES BREAKDOWN`}
+        </h6>
+      </Row>
+      {states}
+    </div>
   );
-};
-
-export default ItemDetails;
+}
