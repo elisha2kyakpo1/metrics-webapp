@@ -30,7 +30,7 @@ export default function Details() {
     ))
     : (
       <div className=" text-white d-flex align-items-center p-2">
-        <h5 className="m-0 fw-light ps-3">These Regions Are Currently Not an available</h5>
+        <h5 className="m-0 fw-light ps-3">These regions are currently not available</h5>
       </div>
     ));
 

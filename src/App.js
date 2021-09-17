@@ -18,7 +18,7 @@ function App() {
             <Link to="/" className="text-decoration-none text-white fw-bold">
               &#60; 2021
             </Link>
-            <h3 className="m-0">COVID-19 STATS</h3>
+            <h6 className="m-0">COVID-19 STATS</h6>
             <span>
               <FontAwesomeIcon icon={faMicrophone} className="me-4" />
               <FontAwesomeIcon icon={faCog} />
