@@ -1,3 +1,37 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.details,
+.cont {
+  background-color: #eb4c89;
+}
+
+.continent {
+  align-items: center;
+}
+
+.dark,
+.header,
+.dark-h6,
+.row-div {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.breakdown:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.country:nth-child(4n + 2),
+.country:nth-child(4n + 1) {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.app {
+  background-color: #eb4c89;
+}
+
+.no-shadow:focus {
+  box-shadow: none;
 }

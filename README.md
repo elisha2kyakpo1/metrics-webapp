@@ -1,70 +1,92 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# metrics-webapp
+A Metrics-webapp is a mobile web application to check a list of corona virus statistics based on country (numeric values). It's built with React and Redux.
 
-## Available Scripts
+![Metrics](/src/assets/metrics.png)
 
-In the project directory, you can run:
+## Live Link
+[Covid-19 tracker](https://covidmetrics.netlify.app/)
 
-### `yarn start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Setup
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+To get started, you should first get this file in your local machine by cloning or forking this project or typing in your terminal
+```
+ git clone https://github.com/elisha2kyakpo1/metrics-webapp.git
 
-### `yarn test`
+ cd metrics-webapp
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+ npm install
 
-### `yarn build`
+ npx start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Testing
+To test the components, just run the command below on command line.
+```
+  npm test
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Contributing
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Contributions, issues and feature requests are welcome! Start by:
 
-### `yarn eject`
+Forking the project
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Cloning the project to your local machine
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+cd into the project directory
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+cd metrics-webapp
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+ Run git checkout -b your-branch-name
+```
 
-## Learn More
+Make your contributions
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Push your branch up to your forked repository
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Open a Pull Request with a detailed description to the development branch of the original project for a review
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Built With
 
-### Analyzing the Bundle Size
+This project was built using these technologies.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
+react(create-react-app)
 
-### Making a Progressive Web App
+redux
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Git
 
-### Advanced Configuration
+Github
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Contributors
 
-### Deployment
+## 👤 **Elisha Kyakopo**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+  Linkedin: [Elisha Kyakopo](https://www.linkedin.com/in/elisha-kyakopo/)
 
-### `yarn build` fails to minify
+  Github: [@elisha2kyakpo1](https://github.com/elisha2kyakpo1)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  Twitter: [@elisha1k](https://twitter.com/Elisha1k)
+
+## 🤝 Contributing
+
+Contributions, issues and requests are welcome
+
+## Show support
+
+
+Give a ⭐️ if you like this project!
+
+## Acknowledgments
+
+- Hat tip to anyone whose code was used
+- Nelson Sakwa on Behance.
+- etc
